@@ -2,15 +2,16 @@ class BinarySearch
   
   FALSE = -1
 
-  def self.search(key, arr, l, r)    
-    mid = (l + r)/2;
-    return mid if arr[mid] == key
-    return FALSE if (l >= r)
+  def self.search(key, arr, left, right)
+
+    mid = (left + right) / 2;
+    return mid if arr[mid] ==  key
+    return FALSE if (left >= right)
 
     if (arr[mid] < key)
-        return search(key, arr, mid + 1, r);
+      return search(key, arr, mid + 1, right);
     else
-        return search(key, arr, l, mid - 1)
+      return search(key, arr, left, mid - 1)
     end
   end
   
