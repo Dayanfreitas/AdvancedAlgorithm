@@ -3,6 +3,6 @@ defmodule AdvancedAlgorithmsTest do
   doctest AdvancedAlgorithms
 
   test "function binary search" do
-    assert AdvancedAlgorithms.binary_search == :ok
+    assert AdvancedAlgorithms.binary_search() == :ok
   end
 end

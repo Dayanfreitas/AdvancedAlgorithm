@@ -2,15 +2,13 @@ defmodule BinarySearch do
   def search(key, list, left, right) do
     middle = trunc((left + right) / 2)
     
-    {:ok, item} = Enum.fetch(list, middle)
+    {_ok, item} = get_middle(Enum.fetch(list, middle))
 
     cond do
-      left >= right ->
-        {:error, -1}
-
       item == key ->
         {:ok, middle}
-
+      left >= right ->
+        {:error, -1}
       true ->
         if item < key do
           search(key, list, middle + 1, right)
@@ -19,4 +17,7 @@ defmodule BinarySearch do
         end
     end
   end
+  
+  def get_middle(:error) do {:ok, nil} end
+  def get_middle({:ok, item}) do {:ok , item} end
 end
