@@ -1,5 +1,5 @@
-class BinarySearch
-  
+module BinarySearch
+
   FALSE = -1
 
   def self.search(key, arr, left, right)

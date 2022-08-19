@@ -1,7 +1,7 @@
 module Data
   def self.load_names
-    file_fem = File.open("./data/ibge-fem-10000.csv")
-    file_mas = File.open("./data/ibge-mas-10000.csv")
+    file_fem = File.open("../../data/ibge-fem-10000.csv")
+    file_mas = File.open("../../data/ibge-mas-10000.csv")
     
     csv_file_fem = CSV.read(file_fem)
     csv_file_mas = CSV.read(file_mas)

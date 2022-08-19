@@ -1,6 +1,3 @@
-.byebug_history
-*.lock
-
 
 # The directory Mix will write compiled artifacts to.
 /_build/
@@ -28,5 +25,3 @@ advanced_algorithms-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
-
-/devel
