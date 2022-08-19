@@ -13,20 +13,16 @@ defmodule Main do
     {_, male_name_list} = List.keyfind(arr, :male_name_list, 0)
 
     BinarySearch.search("DAYAN", all_names, 0, length(all_names))
-    |> IO.inspect()
+    |> IO.inspect
 
     BinarySearch.search("DAYAN", male_name_list, 0, length(male_name_list))
-    |> IO.inspect()
+    |> IO.inspect
+
+    BinarySearch.search("JOSE", female_name_list, 0, length(female_name_list))
+    |> IO.inspect
   end
 
-  def choice do
-    # IO.puts("Algorithms")
-    # IO.gets("1 - Busca Binária ")
-    # |> Integer.parse()
-    # |> parse_input()
-    # |> IO.inspect() 
-  end
-
+  
   def load_data do
     IO.puts("Loading names...")
     female_name_list = load_csv_name("../../data/ibge-fem-10000.csv")
@@ -60,11 +56,4 @@ defmodule Main do
     arr
     |> List.first()
   end
-
-  def parse_input(:error) do
-    IO.puts("Inválido")
-    run()
-  end
-
-  def parse_input({num, _}), do: num
 end
