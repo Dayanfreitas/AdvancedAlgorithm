@@ -50,6 +50,7 @@ def run_start
     puts "names_fem #{data[:names_fem].count}"
     puts "all_names #{data[:all_names].count}"
     puts "\n"
+    puts "by name: DAYAN"
     search_individual_name data
     
     puts "\n"

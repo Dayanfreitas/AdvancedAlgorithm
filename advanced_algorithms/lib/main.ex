@@ -8,17 +8,21 @@ defmodule Main do
 
   def run() do
     {:ok, arr} = load_data()
+    
     {_, all_names} = List.keyfind(arr, :all_names, 0)
     {_, female_name_list} = List.keyfind(arr, :female_name_list, 0)
     {_, male_name_list} = List.keyfind(arr, :male_name_list, 0)
 
-    BinarySearch.search("DAYAN", all_names, 0, length(all_names))
+    {:ok, index} = BinarySearch.search("DAYAN", all_names, 0, length(all_names))
+    |> IO.inspect
+ 
+    Enum.at(all_names, index)
     |> IO.inspect
 
     BinarySearch.search("DAYAN", male_name_list, 0, length(male_name_list))
     |> IO.inspect
 
-    BinarySearch.search("JOSE", female_name_list, 0, length(female_name_list))
+    BinarySearch.search("MARIA", female_name_list, 0, length(female_name_list))
     |> IO.inspect
   end
 
@@ -47,13 +51,11 @@ defmodule Main do
     path
     |> Path.expand(__DIR__)
     |> File.stream!()
-    |> CSV.decode()
+    |> CSV.decode(headers: true)
     |> Enum.map(fn x -> read_name(x) end)
-    |> List.delete_at(0)
   end
 
-  def read_name({_, arr}) do
-    arr
-    |> List.first()
+  def read_name({_, tuple}) do
+    tuple["nome"]
   end
 end

@@ -18,6 +18,6 @@ defmodule BinarySearch do
     end
   end
   
-  def get_middle(:error) do {:ok, nil} end
-  def get_middle({:ok, item}) do {:ok , item} end
+  defp get_middle(:error) do {:ok, nil} end
+  defp get_middle({:ok, item}) do {:ok , item} end
 end
