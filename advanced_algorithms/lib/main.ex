@@ -24,9 +24,11 @@ defmodule Main do
 
     BinarySearch.search("MARIA", female_name_list, 0, length(female_name_list))
     |> IO.inspect
+
+    {:ok, exists} = name_exists_in_both_list(male_name_list, female_name_list, "JOSE")
+    IO.puts("exists in both lists => #{exists}")
   end
 
-  
   def load_data do
     IO.puts("Loading names...")
     female_name_list = load_csv_name("../../data/ibge-fem-10000.csv")
@@ -57,5 +59,12 @@ defmodule Main do
 
   def read_name({_, tuple}) do
     tuple["nome"]
+  end
+
+  def name_exists_in_both_list(list_a, list_b, name) do
+    {:ok, index_a} = BinarySearch.search(name, list_a, 0, length(list_a))
+    {:ok, index_b} = BinarySearch.search(name, list_b, 0, length(list_b))
+
+    {:ok, index_a != -1 && index_b != -1}
   end
 end
