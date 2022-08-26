@@ -17,6 +17,6 @@ defmodule BinarySearchTest do
   test "binary search not found" do
     list = ["ANDRE", "BRUNO", "CAIO", "DAYAN"]
     key = "FELIPE"
-    assert BinarySearch.search(key, list, 0, length(list)) == {:error, -1}
+    assert BinarySearch.search(key, list, 0, length(list)) == {:ok, -1}
   end
 end
