@@ -1,0 +1,1 @@
+require "./ultis/vetor_test.rb"
