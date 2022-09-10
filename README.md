@@ -19,9 +19,12 @@ Repositories for submit advanced algorithms. For college
 
 ***
 ## Algorithm documentation
-1. [BinarySearch](./_doc/binary_search.md)
-2. [BubbleSort](./_doc/bubblesort.md)
-3. [HeapSort](./_doc/heapsort.md)
+
+### PT-BR 🇧🇷
+
+1. [BinarySearch - pt-BR](./_doc/binary_search.md)
+2. [BubbleSort - pt-BR](./_doc/bubblesort.md)
+3. [HeapSort - pt-BR](./_doc/heapsort.md)
 
 ## Development
 * Dockerfile  
