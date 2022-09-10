@@ -2,8 +2,8 @@
 
 <!-- *** -->
 ## Summary
-1. [Algorithm documentation]()
-2. [Development documentation]()
+1. [Algorithm documentation](#algorithm-documentation)
+2. [Development documentation](#development)
 
 ## Algorithm documentation
 1. [BinarySearch](./_doc/binary_search.md)
