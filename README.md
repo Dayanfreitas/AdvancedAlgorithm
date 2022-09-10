@@ -1,6 +1,6 @@
 # Advanced Algorithm 
 
-Repositories for advanced college algorithms subjects
+Repositories for submit advanced algorithms. For college
 
 ## Summary
 1. [Algorithm documentation](#algorithm-documentation)
