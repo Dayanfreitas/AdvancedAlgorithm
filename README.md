@@ -1,7 +1,11 @@
-## Advanced Algorithm 
+# Advanced Algorithm 
 
-***
-## Documentation
+<!-- *** -->
+## Summary
+1. [Algorithm documentation]()
+2. [Development documentation]()
+
+## Algorithm documentation
 1. [BinarySearch](./_doc/binary_search.md)
 2. [BubbleSort](./_doc/bubblesort.md)
 3. [HeapSort](./_doc/heapsort.md)
