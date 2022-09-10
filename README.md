@@ -3,8 +3,8 @@
 ***
 ## Documentation
 1. [BinarySearch](./_doc/binary_search.md)
-2. [BubbleSort](./_doc/bubblesort.md.md)
-3. [HeapSort](./_doc/heapsort.md.md)
+2. [BubbleSort](./_doc/bubblesort.md)
+3. [HeapSort](./_doc/heapsort.md)
 
 ## Development
 * Dockerfile  
