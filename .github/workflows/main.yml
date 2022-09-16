@@ -25,10 +25,4 @@ jobs:
         run: bundle install
       
       - name: Open ruby project
-        run: cd advanced_algorithms_ruby && pwd
-
-      - name: Test folder
-        run: pwd
-
-      - name: Run Tests
-        run: ruby main.rb
+        run: cd advanced_algorithms_ruby/test && ruby main.rb
