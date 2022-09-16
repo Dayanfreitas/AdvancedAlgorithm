@@ -28,7 +28,7 @@ jobs:
         run: bundle install
 
       - name: Test folder
-        run: echo pwd
+        run: pwd
 
       - name: Run Tests
         run: ruby main.rb
