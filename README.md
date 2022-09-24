@@ -13,6 +13,7 @@ Repositories for submit advanced algorithms. For college
 ### With Ruby:
 1. [BinarySearch - IBGE Names](./advanced_algorithms_ruby/binary_search/main.rb)
 2. [Heapsort - Songs Tik Tok](./advanced_algorithms_ruby/_exercise/order_song_tik_tok.rb)
+3. [Maze - virtual mouse](./advanced_algorithms_ruby/hash/maze)
 
 ### With Elixir:
 1. [BinarySearch - IBGE Names](./advanced_algorithms/lib/binary_search.ex)
