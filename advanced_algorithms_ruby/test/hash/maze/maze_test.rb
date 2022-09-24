@@ -1,16 +1,40 @@
 require 'test/unit'
-# require File.join(File.dirname(__FILE__), '..', '..', '..', 'ordination', 'bubble_sort','bubble_sort.rb')
 require File.join(File.dirname(__FILE__), '..', '..', '..', 'hash', 'maze', 'maze.rb')
 
 class MazeTest < Test::Unit::TestCase
-	# def setup
-	# 	@array_no_order = RandomList.size(10)
-	# 	@array_order = @array_no_order.sort
-	# end
+	
+	def test_make_maze_valid
+		maze_arr = [
+			[Maze::START, Maze::FLOOR, Maze::FLOOR, Maze::EXIT],
+		]
+		maze = Maze.new
+		maze.maze = maze_arr
+		assert_equal true, maze.valid?, "Labirinto deve ser válido" 
+	end
+	
+	def test_make_maze_valid_with_draw
+		maze_arr = [
+			[Maze::WALL, Maze::WALL, Maze::WALL, Maze::WALL],
+			[Maze::START, Maze::FLOOR, Maze::FLOOR, Maze::EXIT],
+			[Maze::WALL, Maze::WALL, Maze::WALL, Maze::WALL],
+		]
+		maze = Maze.new
+		maze.maze = maze_arr
+		assert_equal true, maze.valid?, "Labirinto deve ser válido" 
+	end
 
-	# def test_sort_type_of_array
-	# 	assert_kind_of Array, BubbleSort.sort(@array_no_order), "deve retonar type of array"
-	# end
+	def test_make_maze_invalid
+		assert_raises StandardError do
+			maze_arr = [
+				[Maze::WALL, Maze::WALL, Maze::WALL, Maze::WALL],
+				[Maze::WALL, Maze::FLOOR, Maze::FLOOR, Maze::WALL],
+				[Maze::WALL, Maze::WALL, Maze::WALL, Maze::WALL],
+			]
+			maze = Maze.new
+			maze.maze = maze_arr
+			maze.valid?
+		end
+	end
 
 	def test_maze_contants
 		assert_equal Maze::WALL, "#", "Deve retornar parede"

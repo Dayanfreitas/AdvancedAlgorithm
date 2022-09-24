@@ -24,13 +24,20 @@ class Maze
 
   def valid?
     _PERMIT = PERMIT.map(&:bytes)
+    
+    _count_start = 0
+    _count_exit = 0
 
     @maze.each { |line|
       line.each { |column|
-        is_valid = _PERMIT.each.find{|x| x == column.bytes }
-        raise "Maze is not valid" unless is_valid
+        caracter = _PERMIT.each.find{|x| x == column.bytes }
+        raise StandardError.new "Maze is not valid" if caracter.nil?
+        _count_start += 1 if caracter == START.bytes
+        _count_exit += 1 if caracter == EXIT.bytes
       }
     }
+    raise StandardError.new "Maze is not valid" if _count_start == 0
+    raise StandardError.new "Maze is not valid" if _count_exit == 0 
 
     true
   end
