@@ -3,21 +3,35 @@ require_relative './command/memory_file_command.rb'
 require_relative './command/invoker_load_file.rb'
 require_relative './command/invoker_load_file_memory.rb'
 
+require_relative './solver/solver_maze_context.rb'
+require_relative './solver/back_track.rb'
+
 require_relative './maze.rb'
+
+BACKTRACK = "BACKTRACK"
+
 name_file = ARGV[0]
+strategy = BACKTRACK
+
+raise "Expected file name as parameter" unless name_file
 
 invoker_load_file = InvokerLoadFile.new
 invoker_load_file.load_file = ReadFileCommand.new(name_file)
-invoker_load_file.init
+maze_file = invoker_load_file.init
 
 invoker_load_file_memory = InvokerLoadFileMemory.new
-invoker_load_file_memory.load_file_memory = MemoryFileCommand.new(Maze, invoker_load_file.init)
-maze = invoker_load_file_memory.init
+invoker_load_file_memory.load_file_memory = MemoryFileCommand.new(Maze, maze_file)
+maze_object = invoker_load_file_memory.init
 
-puts maze 
+solver_context = SolverMazeContext.new
+solver_context.set_strategy(BackTrack.new) if strategy.eql?(BACKTRACK)
+solution = solver_context.solver(maze_object)
 
-
-# maze_arr = Maze.parse_maze(maze_string)
-# maze_arr.each { |x| p x }
-# p Maze.new(maze_arr).to_hash
-
+# animation solution
+solution.each do |position|
+  x, y = position
+  system('clear')
+  maze_object.maze[x][y] = Solve.new(x, y)
+  Maze.draw(maze_object)
+  sleep 0.2
+end
