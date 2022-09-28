@@ -4,34 +4,27 @@ require File.join(File.dirname(__FILE__), '..', '..', '..', 'hash', 'maze', 'maz
 class MazeTest < Test::Unit::TestCase
 	
 	def test_make_maze_valid
-		maze_arr = [
-			[Maze::START, Maze::FLOOR, Maze::FLOOR, Maze::EXIT],
-		]
+		maze_string = "#{Maze::START}#{Maze::FLOOR}#{Maze::FLOOR}#{Maze::FLOOR}#{Maze::EXIT}"
+		
 		maze = Maze.new
-		maze.maze = maze_arr
+		maze.maze = Maze.parse_maze(maze_string)
 		assert_equal true, maze.valid?, "Labirinto deve ser válido" 
 	end
 	
 	def test_make_maze_valid_with_draw
-		maze_arr = [
-			[Maze::WALL, Maze::WALL, Maze::WALL, Maze::WALL],
-			[Maze::START, Maze::FLOOR, Maze::FLOOR, Maze::EXIT],
-			[Maze::WALL, Maze::WALL, Maze::WALL, Maze::WALL],
-		]
+		maze_string = "#####\nS...E\n#####"
+		
 		maze = Maze.new
-		maze.maze = maze_arr
+		maze.maze = Maze.parse_maze(maze_string)
 		assert_equal true, maze.valid?, "Labirinto deve ser válido" 
 	end
 
 	def test_make_maze_invalid
 		assert_raises StandardError do
-			maze_arr = [
-				[Maze::WALL, Maze::WALL, Maze::WALL, Maze::WALL],
-				[Maze::WALL, Maze::FLOOR, Maze::FLOOR, Maze::WALL],
-				[Maze::WALL, Maze::WALL, Maze::WALL, Maze::WALL],
-			]
+			maze_string = "#{Maze::WALL}#{Maze::WALL}#{Maze::WALL}#{Maze::WALL}\n#{Maze::WALL}#{Maze::FLOOR}#{Maze::FLOOR}#{Maze::WALL}\n#{Maze::WALL}#{Maze::WALL}#{Maze::WALL}#{Maze::WALL}"
+	
 			maze = Maze.new
-			maze.maze = maze_arr
+			maze.maze = Maze.parse_maze(maze_string)
 			maze.valid?
 		end
 	end
