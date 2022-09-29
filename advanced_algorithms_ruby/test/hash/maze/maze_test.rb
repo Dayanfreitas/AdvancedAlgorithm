@@ -1,4 +1,5 @@
 require 'test/unit'
+require 'byebug'
 require File.join(File.dirname(__FILE__), '..', '..', '..', 'hash', 'maze', 'maze.rb')
 
 class MazeTest < Test::Unit::TestCase
@@ -7,7 +8,8 @@ class MazeTest < Test::Unit::TestCase
 		maze_string = "#{Maze::START}#{Maze::FLOOR}#{Maze::FLOOR}#{Maze::FLOOR}#{Maze::EXIT}"
 		
 		maze = Maze.new
-		maze.maze = Maze.parse_maze(maze_string)
+		tubles_maze = Maze.parse_maze(maze_string)
+		maze.maze = tubles_maze[:maze_lines]
 		assert_equal true, maze.valid?, "Labirinto deve ser válido" 
 	end
 	
@@ -15,7 +17,8 @@ class MazeTest < Test::Unit::TestCase
 		maze_string = "#####\nS...E\n#####"
 		
 		maze = Maze.new
-		maze.maze = Maze.parse_maze(maze_string)
+		tubles_maze = Maze.parse_maze(maze_string)
+		maze.maze = tubles_maze[:maze_lines]
 		assert_equal true, maze.valid?, "Labirinto deve ser válido" 
 	end
 
@@ -24,7 +27,8 @@ class MazeTest < Test::Unit::TestCase
 			maze_string = "#{Maze::WALL}#{Maze::WALL}#{Maze::WALL}#{Maze::WALL}\n#{Maze::WALL}#{Maze::FLOOR}#{Maze::FLOOR}#{Maze::WALL}\n#{Maze::WALL}#{Maze::WALL}#{Maze::WALL}#{Maze::WALL}"
 	
 			maze = Maze.new
-			maze.maze = Maze.parse_maze(maze_string)
+			tubles_maze = Maze.parse_maze(maze_string)
+			maze.maze = tubles_maze[:maze_lines]
 			maze.valid?
 		end
 	end
