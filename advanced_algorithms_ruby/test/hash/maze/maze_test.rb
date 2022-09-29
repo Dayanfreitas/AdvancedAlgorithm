@@ -1,5 +1,4 @@
 require 'test/unit'
-require 'byebug'
 require File.join(File.dirname(__FILE__), '..', '..', '..', 'hash', 'maze', 'maze.rb')
 
 class MazeTest < Test::Unit::TestCase
