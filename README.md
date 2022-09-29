@@ -1,4 +1,5 @@
 # Advanced Algorithm 
+![example workflow](https://github.com/Dayanfreitas/AdvancedAlgorithm/actions/workflows/main.yml/badge.svg)
 
 Repositories for submit advanced algorithms. For college
 
