@@ -40,7 +40,19 @@ class Exit < Position
 end
 class Solve < Position 
   def initialize(x, y)
-    super(x, y, "@")
+    super(x, y, Maze::SOLVER)
+  end
+end
+
+class Trail < Position
+  def initialize(x, y)
+    super(x, y, Maze::TRAIL)
+  end
+end
+
+class Animation < Position
+  def initialize(x, y)
+    super(x, y, Maze::ANIMATION)
   end
 end
 
@@ -49,6 +61,9 @@ class Maze
   FLOOR = "."
   START = "S"
   EXIT = "E"
+  TRAIL = "-"
+  SOLVER = "@"
+  ANIMATION = "*"
 
   PERMIT = [ WALL, FLOOR, START, EXIT ].freeze
   
@@ -58,6 +73,22 @@ class Maze
   
   def maze
     @maze
+  end
+
+  def starting_point=(starting_point)
+    @starting_point = starting_point
+  end
+  
+  def starting_point
+    @starting_point
+  end
+
+  def exit_point=(exit_point)
+    @exit_point = exit_point
+  end
+  
+  def exit_point
+    @exit_point
   end
 
   def to_hash
@@ -89,12 +120,15 @@ class Maze
   end
 
   def self.draw(maze)
-    maze.maze.each { |line| 
+    maze.maze.each { |line|
       puts line.map(&:caracter).join
     }
   end
 
   def self.parse_maze(string)
+    starting_point = []
+    exit_point = []
+
     maze_lines = string.split("\n").map.with_index { |line, line_index|
       line_split = line.split //
       line_split.map.with_index { |caracter, column_index|
@@ -105,11 +139,16 @@ class Maze
           position = Floor.new(line_index, column_index, FLOOR)
         when START
           position = Start.new(line_index, column_index, START)
+          starting_point.push(position)
         when EXIT
           position = Exit.new(line_index, column_index, EXIT)
+          exit_point.push(position)
         end
+
+        position
       }
     }
-    maze_lines
+   
+    {maze_lines: maze_lines, starting_point: starting_point, exit_point: exit_point} 
   end
 end
