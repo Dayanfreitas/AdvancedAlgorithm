@@ -14,8 +14,9 @@ class MemoryFileCommand < Command
     @receiver_maze.starting_point = tubles_maze[:starting_point]
     @receiver_maze.exit_point = tubles_maze[:exit_point]
     @receiver_maze.valid?
-    @receiver_maze
+    @receiver_maze       
     rescue => exception
       puts exception
+      exit
   end
 end
