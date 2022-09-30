@@ -1,3 +1,7 @@
+require 'json'
+require 'digest'
+require 'byebug'
+require_relative './../../initialize/01-initilize-redis.rb'
 require_relative './command/read_file_command.rb'
 require_relative './command/memory_file_command.rb'
 require_relative './command/invoker_load_file.rb'
@@ -16,6 +20,7 @@ name_file = ARGV[0]
 strategy = RECURSIVE_ALGORITHM
 
 raise "Expected file name as parameter" unless name_file
+redis = ConnectionRedis.instance
 
 invoker_load_file = InvokerLoadFile.new
 invoker_load_file.load_file = ReadFileCommand.new(name_file)
@@ -25,10 +30,16 @@ invoker_load_file_memory = InvokerLoadFileMemory.new
 invoker_load_file_memory.load_file_memory = MemoryFileCommand.new(Maze, maze_file)
 maze_object = invoker_load_file_memory.init
 
-solver_context = SolverMazeContext.new
-solver_context.set_strategy(BackTrack.new) if strategy.eql?(BACKTRACK)
-solver_context.set_strategy(RecursiveAlgorithm.new) if strategy.eql?(RECURSIVE_ALGORITHM)
-solution = solver_context.solver(maze_object)
+md5 = Digest::MD5.file name_file
+solution = JSON.parse(redis.get(md5.to_s) || '[]')
+
+if solution.empty?
+  solver_context = SolverMazeContext.new
+  solver_context.set_strategy(BackTrack.new) if strategy.eql?(BACKTRACK)
+  solver_context.set_strategy(RecursiveAlgorithm.new) if strategy.eql?(RECURSIVE_ALGORITHM)
+  solution = solver_context.solver(maze_object)
+  redis.set(md5.to_s, solution)
+end
 
 # animation solution
 solution.each do |position|

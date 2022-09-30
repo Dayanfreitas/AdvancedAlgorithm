@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  redis:
+    image: 'redis:7-alpine'
+    deploy:
+      resources:
+        limits:
+          memory: 1Gb
+    ports:
+      - '6379:6379'
 
   app:
     build: .
@@ -10,3 +18,5 @@ services:
 
     stdin_open: true
     tty: true
+    links:
+      - redis
