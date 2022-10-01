@@ -91,12 +91,12 @@ class Maze
     @exit_point
   end
 
-  def to_hash
-    @maze.each {|x|  
-      x.each{|s|
-        p s.bytes
-      }
-    }
+  def text=(text)
+    @text = text
+  end
+
+  def text
+    @text
   end
 
   def valid?

@@ -1,5 +1,4 @@
 require "redis"
-
 class ConnectionRedis
   @instance = new
   private_class_method :new
